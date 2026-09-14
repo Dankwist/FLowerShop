@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin - FlowerShop</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="left-nav">
+            <h2>
+                <span class="orange-logo">Flower</span>Shop
+            </h2>
+        </div>
+
+        <div class="center-nav">
+            <a href="./index.html">Home</a>
+            <a href="./shop.html">Shop</a>
+            <a href="./orders.html">Orders</a>
+        </div>
+
+        <div class="right-nav">
+            <a href="./profile.html" id="profile-link"></a>
+
+            <a href="./cart.html">
+                <img src="../icons/cart-icon.png" alt="cart">
+            </a>
+        </div>
+    </nav>
+
+
+    <main class="admin-page">
+
+        <div class="admin-heading">
+            <p>ADMIN PANEL</p>
+            <h1>Dashboard</h1>
+        </div>
+
+
+        <section class="admin-section">
+
+            <div class="section-heading">
+                <div>
+                    <p>CATALOG</p>
+                    <h2>Flowers</h2>
+                </div>
+
+                <button id="add-flower-button">
+                    Add flower
+                </button>
+            </div>
+
+
+            <div id="flower-form-container" class="flower-form-container">
+
+                <form id="flower-form">
+
+                    <h3 id="form-title">
+                        Add flower
+                    </h3>
+
+                    <input
+                        type="text"
+                        id="flower-name"
+                        placeholder="Name"
+                        required
+                    >
+
+                    <textarea
+                        id="flower-description"
+                        placeholder="Description"
+                        required
+                    ></textarea>
+
+                    <input
+                        type="number"
+                        id="flower-price"
+                        placeholder="Price"
+                        required
+                    >
+
+                    <input
+                        type="text"
+                        id="flower-image"
+                        placeholder="Image path"
+                        required
+                    >
+
+                    <input
+                        type="text"
+                        id="flower-category"
+                        placeholder="Category"
+                        required
+                    >
+
+                    <input
+                        type="number"
+                        id="flower-stock"
+                        placeholder="Stock"
+                        required
+                    >
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            id="flower-featured"
+                        >
+
+                        Featured
+                    </label>
+
+                    <div class="form-buttons">
+
+                        <button type="submit">
+                            Save
+                        </button>
+
+                        <button
+                            type="button"
+                            id="cancel-form"
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div
+                id="flowers-admin-container"
+                class="flowers-admin-container"
+            >
+                Loading...
+            </div>
+
+        </section>
+
+
+        <section class="admin-section">
+
+            <div class="section-heading">
+                <div>
+                    <p>ORDERS</p>
+                    <h2>Customer orders</h2>
+                </div>
+            </div>
+            <div
+                id="orders-admin-container"
+                class="orders-admin-container"
+            >
+                Loading...
+            </div>
+        </section>
+    </main>
+    <script type="module" src="../js/admin.js"></script>
+    <script type="module" src="../js/user-nav.js"></script>
+</body>
+</html>

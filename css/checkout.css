@@ -1,0 +1,93 @@
+.checkout-page {
+    min-height: 650px;
+    padding: 60px 20px;
+    background-color: rgba(242, 242, 242, 1);
+}
+
+.checkout-box {
+    width: 600px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+}
+
+.checkout-label {
+    margin: 0;
+    color: orange;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.checkout-box h1 {
+    margin: 8px 0 30px;
+    font-size: 38px;
+}
+
+.checkout-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.checkout-item-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.checkout-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.checkout-item p {
+    margin: 3px 0;
+    color: #999;
+    font-size: 13px;
+}
+
+.checkout-total {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    font-size: 20px;
+}
+
+#place-order {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    background-color: orange;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.checkout-box > a {
+    display: block;
+    margin-top: 20px;
+    color: #777;
+    text-align: center;
+    text-decoration: none;
+}
+
+.checkout-box > a:hover {
+    color: orange;
+}
+
+#checkout-message {
+    text-align: center;
+    margin-top: 15px;
+    color: #777;
+}

@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowerShop</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/flower.css">
+</head>
+<body>
+    <nav>
+        <div class="left-nav">
+            <h2><span class="orange-logo">Flower</span>Shop</h2>
+        </div>
+        <div class="center-nav">
+            <a href="./index.html">Home</a>
+            <a href="./shop.html">Shop</a>
+            <a href="">Blog</a>
+            <a href="">About</a>
+        </div>
+        <div class="right-nav">
+                <a href="./login.html" id="profile-link">
+                  <img src="../icons/profile-icon.png" alt="profile">
+                </a>
+                <a href="./cart.html"><img src="../icons/cart-icon.png" alt="cart"></a>
+                <a href="./admin.html" id="admin-link" style="display: none;">
+                                        Admin
+                                        </a>
+        </div>
+    </nav>
+
+   <main class="flower-page">
+    <div class="flower-main" id="flower-container"></div>
+    <section class="reviews-section">
+        <div class="reviews-heading">
+            <div>
+                <p>REVIEWS</p>
+                <h2>What people think</h2>
+            </div>
+            <div class="average-rating">
+                <span id="average-rating">★ 0.0</span>
+                <small id="reviews-count">0 reviews</small>
+            </div>
+        </div>
+        <div class="review-form" id="review-form-container">
+            <h3>Leave a review</h3>
+            <div class="review-stars" id="review-stars">
+                <button type="button" data-rating="1">★</button>
+                <button type="button" data-rating="2">★</button>
+                <button type="button" data-rating="3">★</button>
+                <button type="button" data-rating="4">★</button>
+                <button type="button" data-rating="5">★</button>
+            </div>
+            <textarea id="review-text" placeholder="Write your review..."></textarea>
+            <button id="submit-review">Send review</button>
+            <p id="review-message"></p>
+        </div>
+        <div id="reviews-container"></div>
+    </section>
+</main>
+
+    <footer>
+        <div class="footer-left">
+            <h2><span class="orange-logo">Flower</span>Shop</h2>
+            <p>Some random stuff about flower shop and some more info cuz this box had to get fill
+                Some random stuff about flower shop and some more info cuz this box had to get fill
+                Some random stuff about flower shop and some more info cuz this box had to get fill</p>
+        </div>
+        <div class="footer-center">
+            <p><span class="footer-links">Links</span></p>
+            <ul>
+                <li>Home</li>
+                <li>Shop</li>
+                <li>About</li>
+                <li>Login</li>
+            </ul>
+        </div>
+        <div class="footer-center1">
+            <p><span class="footer-links">Links</span></p>
+            <ul>
+                <li>Home</li>
+                <li>Shop</li>
+                <li>About</li>
+                <li>Login</li>
+            </ul>
+        </div>
+        <div class="footer-right">
+            <p><span class="footer-links">Contacts</span></p>
+            <ul>
+                <li><img src="../icons/footer1-icon.png" alt="">26985 Brighton Lane, Lake Forest, CA</li>
+                <li><img src="../icons/footer2-icon.png" alt="">support@Flowers.com</li>
+                <li><img src="../icons/footer3-icon.png" alt="">+1 236 5489</li>
+            </ul>
+        </div>
+    </footer>
+
+    <script type="module" src="../js/flower.js"></script>
+    <script type="module" src="../js/user-nav.js"></script>
+</body>
+</html>

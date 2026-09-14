@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - FlowerShop</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/cart.css">
+</head>
+<body>
+    <nav>
+        <div class="left-nav">
+            <h2><span class="orange-logo">Flower</span>Shop</h2>
+        </div>
+        <div class="center-nav">
+            <a href="./index.html">Home</a>
+            <a href="./shop.html">Shop</a>
+            <a href="">Blog</a>
+            <a href="">About</a>
+        </div>
+        <div class="right-nav">
+            <a href="./profile.html" id="profile-link"></a>
+            <a href="./cart.html">
+                <img src="../icons/cart-icon.png" alt="cart">
+            </a>
+        </div>
+    </nav>
+
+    <main class="cart-page">
+        <div class="cart-heading">
+            <div>
+                <p class="cart-label">YOUR SELECTION</p>
+                <h1>Shopping cart</h1>
+            </div>
+            <a href="./shop.html">← Continue shopping</a>
+        </div>
+
+        <div class="cart-layout">
+            <section class="cart-products">
+                <div class="cart-products-top">
+                    <p>Products</p>
+                    <p id="cart-count">0 items</p>
+                </div>
+
+                <div id="cart-container"></div>
+            </section>
+
+            <aside class="cart-summary">
+                <p class="cart-summary-label">ORDER SUMMARY</p>
+                <h2>Your order</h2>
+
+                <div class="summary-row">
+                    <span>Products</span>
+                    <span id="summary-products">$0</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Delivery</span>
+                    <span>Free</span>
+                </div>
+
+                <div class="summary-line"></div>
+
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span id="cart-total">$0</span>
+                </div>
+
+                <button id="checkout-button">Checkout</button>
+
+                <p class="checkout-note">
+                    Your order will be saved to your account.
+                </p>
+            </aside>
+        </div>
+    </main>
+
+    <script type="module" src="../js/cart.js"></script>
+    <script type="module" src="../js/user-nav.js"></script>
+</body>
+</html>

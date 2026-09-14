@@ -1,0 +1,234 @@
+.admin-page {
+    min-height: 700px;
+    padding: 60px;
+    background-color: rgba(242, 242, 242, 1);
+}
+
+.admin-heading {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+}
+
+.admin-heading p,
+.section-heading p {
+    margin: 0;
+    color: orange;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.admin-heading h1 {
+    margin: 8px 0 0;
+    font-size: 42px;
+}
+
+.admin-section {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    padding: 30px;
+    background-color: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.section-heading h2 {
+    margin: 7px 0 0;
+    font-size: 28px;
+}
+
+#add-flower-button {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: orange;
+    color: white;
+    cursor: pointer;
+}
+
+.flower-form-container {
+    display: none;
+    margin-bottom: 30px;
+    padding: 25px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+}
+
+#flower-form {
+    display: grid;
+    gap: 12px;
+}
+
+#flower-form h3 {
+    margin: 0 0 5px;
+}
+
+#flower-form input,
+#flower-form textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    font-family: inherit;
+}
+
+#flower-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#flower-form label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.form-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.form-buttons button:first-child {
+    background-color: orange;
+    color: white;
+}
+
+.form-buttons button:last-child {
+    background-color: #ddd;
+}
+
+.admin-flower {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.admin-flower:last-child {
+    border-bottom: none;
+}
+
+.admin-flower img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.admin-flower-info h3 {
+    margin: 0 0 7px;
+}
+
+.admin-flower-info p {
+    margin: 3px 0;
+    color: #888;
+    font-size: 13px;
+}
+
+.admin-flower-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.admin-flower-actions button {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.admin-flower-actions button:hover {
+    background-color: #f5f5f5;
+}
+
+.admin-flower-actions .delete-button {
+    color: red;
+}
+
+.admin-order {
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.admin-order:last-child {
+    border-bottom: none;
+}
+
+.admin-order-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-order-top p {
+    margin: 0;
+    color: #777;
+}
+
+.admin-order-items {
+    margin: 15px 0;
+}
+
+.admin-order-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+.admin-order-status {
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.admin-order-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+@media (max-width: 700px) {
+
+    .admin-page {
+        padding: 30px 20px;
+    }
+
+    .admin-section {
+        padding: 20px;
+    }
+
+    .admin-flower {
+        grid-template-columns: 60px 1fr;
+    }
+
+    .admin-flower img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .admin-flower-actions {
+        grid-column: 2;
+    }
+
+}

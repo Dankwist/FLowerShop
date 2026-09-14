@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FlowerShop</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/shop.css">
+</head>
+<body>
+        <nav>
+                <div class="left-nav">
+                        <h2><span class="orange-logo">Flower</span>Shop</h2>
+                </div>
+                        <div class="center-nav">
+                                <a href="./index.html">Home</a>
+                                <a href="./shop.html">Shop</a>
+                                <a href="">Blog</a>
+                                <a href="">About</a>
+                        </div>
+                                <div class="right-nav">
+                                       <a href="./login.html" id="profile-link">
+                                        <img src="../icons/profile-icon.png" alt="profile">
+                                        </a>
+                                        <a href="./cart.html"><img src="../icons/cart-icon.png" alt="cart"></a>
+                                        <a href="./admin.html" id="admin-link" style="display: none;">
+                                        Admin
+                                        </a>
+                                </div>
+        </nav>
+
+        <section class="filters">
+
+                <div class="left-filter">
+                        <img src="../icons/left-filter.png" alt="filter">
+                        <p>Filtering</p>
+                </div>
+
+                <div class="center-search">
+                        <div class="left-search">
+                        <form class="search-form" id="search-form">
+
+                                <label for="site-search" class="visually-hidden">
+                                Search flowers
+                                </label>
+                                <input
+                                type="search"
+                                id="site-search"
+                                placeholder="Search..."
+                                >
+
+                                <button type="submit">
+                                <img src="../icons/search-icon.png" alt="find">
+                                </button>
+                         </form>
+                        </div>
+
+        <div class="right-filter">
+            <img src="../icons/right-filter.png" alt="sort">
+            <select id="sort-select">
+                <option value="default">Sort</option>
+                <option value="price-asc">Price: low to high</option>
+                <option value="price-desc">Price: high to low</option>
+                <option value="name-asc">Name: A-Z</option>
+                <option value="name-desc">Name: Z-A</option>
+            </select>
+        </div>
+    </div>
+</section>
+
+
+                <section class="shop-filters">
+                        <select id="category-filter">
+                                <option value="all">All flowers</option>
+                                <option value="flowers">Flowers</option>
+                                <option value="roses">Roses</option>
+                                <option value="tulips">Tulips</option>
+                                <option value="bouquets">Bouquets</option>
+
+                        </select>
+                        <button id="reset-filters">
+                                Reset
+                        </button>
+
+                </section>
+
+
+
+                <section class="shop-products"> 
+                        <div class="shop-products-main" id="flowers-container"></div>
+                        <div class="show-more-container">
+                                <button id="show-more">Show more</button>
+                        </div>
+                </section>
+
+
+        <footer>
+                <div class="footer-left">
+                     <h2><span class="orange-logo">Flower</span>Shop</h2>
+                     <p>Some random stuff about flower shop and some more info cuz this box had to get fill
+                        Some random stuff about flower shop and some more info cuz this box had to get fill
+                        Some random stuff about flower shop and some more info cuz this box had to get fill</p>   
+                 </div>
+                        <div class="footer-center">
+                                <p><span class="footer-links">Links</span></p>
+                                <ul>
+                                        <li>Home</li>
+                                        <li>Shop</li>
+                                        <li>About</li>
+                                        <li>Login</li>       
+                                </ul>
+                        </div>
+                          <div class="footer-center1">
+                                <p><span class="footer-links">Links</span></p>
+                                <ul>
+                                        <li>Home</li>
+                                        <li>Shop</li>
+                                        <li>About</li>
+                                        <li>Login</li>       
+                                </ul>
+                        </div>
+                        <div class="footer-right">
+                                <p><span class="footer-links">Contacts</span></p>
+                                <ul>
+                                        <li><img src="../icons/footer1-icon.png" alt="">26985 Brighton Lane, Lake Forest, CA</li>
+                                        <li><img src="../icons/footer2-icon.png" alt="">support@Flowers.com</li>
+                                        <li><img src="../icons/footer3-icon.png" alt="">+1 236 5489</li>
+                                </ul>
+                        </div>
+        </footer>
+<script type="module" src="../js/shop.js"></script>
+<script type="module" src="../js/user-nav.js"></script>
+</body>
+</html>

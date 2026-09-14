@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - FlowerShop</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/profile.css">
+</head>
+<body>
+    <nav>
+        <div class="left-nav">
+            <h2><span class="orange-logo">Flower</span>Shop</h2>
+        </div>
+        <div class="center-nav">
+            <a href="./index.html">Home</a>
+            <a href="./shop.html">Shop</a>
+            <a href="./orders.html">Orders</a>
+        </div>
+        <div class="right-nav">
+            <a href="./profile.html" id="profile-link"></a>
+            <a href="./cart.html"><img src="../icons/cart-icon.png" alt="cart"></a>
+        </div>
+    </nav>
+    <main class="profile-page">
+        <div class="profile-header">
+            <p>ACCOUNT</p>
+            <h1>My profile</h1>
+        </div>
+        <section class="profile-grid">
+            <div class="profile-card">
+                <h2>Personal information</h2>
+                <label>Name</label>
+                <input type="text" id="profile-name-input">
+                <label>Email</label>
+                <input type="email" id="profile-email" disabled>
+                <label>Role</label>
+                <p id="profile-role">Loading...</p>
+                <button id="save-profile">Save changes</button>
+                <p id="profile-message"></p>
+                <button id="logout-button" class="logout-button">Log out</button>
+            </div>
+            <div class="profile-card">
+                <div class="profile-card-heading">
+                    <h2>My orders</h2>
+                    <a href="./orders.html">View all</a>
+                </div>
+                <div id="profile-orders">Loading...</div>
+            </div>
+            <div class="profile-card profile-reviews">
+                <h2>My reviews</h2>
+                <div id="profile-reviews">Loading...</div>
+            </div>
+        </section>
+    </main>
+    <script type="module" src="../js/profile.js"></script>
+    <script type="module" src="../js/user-nav.js"></script>
+</body>
+</html>

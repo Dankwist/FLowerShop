@@ -1,0 +1,219 @@
+
+.flower-page {
+    padding: 60px;
+    background-color: rgba(242, 242, 242, 1);
+    min-height: 600px;
+}
+
+.flower-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.flower-image img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.flower-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.flower-category {
+    color: orange;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+.reviews-section {
+    max-width: 1100px;
+    margin: 30px auto 0;
+    padding: 35px;
+    background-color: white;
+    border-radius: 10px;
+}
+.reviews-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.reviews-heading > div:first-child p {
+    margin: 0;
+    color: orange;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.reviews-heading h2 {
+    margin: 8px 0 0;
+    font-size: 28px;
+}
+.average-rating {
+    text-align: right;
+}
+.average-rating span {
+    display: block;
+    font-size: 22px;
+    font-weight: bold;
+}
+.average-rating small {
+    color: #999;
+}
+.review-form {
+    margin-bottom: 35px;
+    padding: 25px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+}
+.review-form h3 {
+    margin-top: 0;
+}
+.review-stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 15px;
+}
+.review-stars button {
+    padding: 0;
+    border: none;
+    background: none;
+    color: #ccc;
+    font-size: 25px;
+    cursor: pointer;
+}
+.review-stars button.selected {
+    color: orange;
+}
+#review-text {
+    width: 100%;
+    min-height: 90px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    resize: vertical;
+    outline: none;
+    font-family: inherit;
+}
+#submit-review {
+    margin-top: 12px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: orange;
+    color: white;
+    cursor: pointer;
+}
+#review-message {
+    margin: 10px 0 0;
+    color: #777;
+    font-size: 14px;
+}
+.review-card {
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+}
+.review-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.review-top strong {
+    font-size: 16px;
+}
+.review-top p {
+    margin: 5px 0 0;
+    color: orange;
+    letter-spacing: 2px;
+}
+.review-text {
+    margin: 15px 0 0;
+    color: #666;
+    line-height: 1.5;
+}
+.delete-review {
+    border: none;
+    background: none;
+    color: #999;
+    cursor: pointer;
+}
+.delete-review:hover {
+    color: red;
+}
+.no-reviews {
+    padding: 30px 0;
+    text-align: center;
+    color: #999;
+}
+
+.flower-info h1 {
+    font-size: 42px;
+    margin: 10px 0;
+}
+
+.flower-rating {
+    margin-bottom: 25px;
+}
+
+.flower-description {
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.flower-price {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.flower-stock {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.flower-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.quantity button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: white;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.quantity span {
+    width: 35px;
+    text-align: center;
+}
+
+.add-cart {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    background-color: orange;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
