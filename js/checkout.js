@@ -11,7 +11,9 @@ import {
     getDocs,
     addDoc,
     deleteDoc,
-    doc
+    doc,
+    getDoc,
+    updateDoc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const itemsContainer = document.querySelector("#checkout-items");
@@ -92,16 +94,38 @@ placeOrderButton.addEventListener("click", async () => {
     if (cartItems.length === 0) {
         return;
     }
-
     try {
         placeOrderButton.disabled = true;
         placeOrderButton.textContent = "Creating order...";
+        for (const item of cartItems) {
+    const flowerDoc = await getDoc(doc(db, "flowers", item.flowerId));
+    if (!flowerDoc.exists()) {
+        message.textContent = `${item.name} is no longer available.`;
+        placeOrderButton.disabled = false;
+        placeOrderButton.textContent = "Place order";
+        return;
+    }
+    const flower = flowerDoc.data();
+    if (flower.stock < item.quantity) {
+        message.textContent = `${item.name}: only ${flower.stock} left in stock.`;
+        placeOrderButton.disabled = false;
+        placeOrderButton.textContent = "Place order";
+        return;
+    }
+}
+
+for (const item of cartItems) {
+    const flowerRef = doc(db, "flowers", item.flowerId);
+    const flowerDoc = await getDoc(flowerRef);
+    const flower = flowerDoc.data();
+    await updateDoc(flowerRef, {
+        stock: flower.stock - item.quantity
+    });
+}
 
         let total = 0;
-
         const orderItems = cartItems.map((item) => {
             total += item.price * item.quantity;
-
             return {
                 flowerId: item.flowerId,
                 name: item.name,

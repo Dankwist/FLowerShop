@@ -8,12 +8,63 @@ const reviewsCount = document.querySelector("#reviews-count");
 const reviewText = document.querySelector("#review-text");
 const submitReview = document.querySelector("#submit-review");
 const reviewMessage = document.querySelector("#review-message");
+const relatedContainer = document.querySelector("#related-container");
+const relatedMore = document.querySelector("#related-more");
+let relatedFlowers = [];
+let relatedLimit = 4;
 const params = new URLSearchParams(window.location.search);
 const flowerId = params.get("id");
 let currentFlower = null;
 let quantity = 1;
 let selectedRating = 0;
 let currentUser = null;
+
+async function loadRelatedFlowers() {
+    if (!currentFlower) {
+        return;
+    }
+    const flowersQuery = query(
+        collection(db, "flowers"),
+        where("category", "==", currentFlower.category)
+    );
+    const snapshot = await getDocs(flowersQuery);
+    relatedFlowers = [];
+    snapshot.forEach((flowerDoc) => {
+        if (flowerDoc.id !== currentFlower.id) {
+            relatedFlowers.push({
+                id: flowerDoc.id,
+                ...flowerDoc.data()
+            });
+        }
+    });
+    renderRelatedFlowers();
+}
+function renderRelatedFlowers() {
+    relatedContainer.innerHTML = "";
+    const visibleFlowers = relatedFlowers.slice(0, relatedLimit);
+    visibleFlowers.forEach((flower) => {
+        const card = document.createElement("div");
+        card.classList.add("related-card");
+        card.innerHTML = `
+            <img src="${flower.image}" alt="${flower.name}">
+            <div>
+                <p>${flower.category || "Flowers"}</p>
+                <h3>${flower.name}</h3>
+                <strong>${flower.price}$</strong>
+            </div>
+        `;
+        card.addEventListener("click", () => {
+            window.location.href = `./flower.html?id=${flower.id}`;
+        });
+        relatedContainer.appendChild(card);
+    });
+    relatedMore.style.display = relatedFlowers.length > relatedLimit ? "block" : "none";
+}
+relatedMore.addEventListener("click", () => {
+    relatedLimit += 4;
+    renderRelatedFlowers();
+});
+
 async function loadFlower() {
     if (!flowerId) {
         flowerContainer.innerHTML = "<p>Flower not found</p>";
@@ -51,6 +102,8 @@ async function loadFlower() {
             <p id="cart-message"></p>
         </div>
     `;
+
+    loadRelatedFlowers();
     const minusButton = document.querySelector("#minus");
     const plusButton = document.querySelector("#plus");
     const quantityElement = document.querySelector("#quantity");

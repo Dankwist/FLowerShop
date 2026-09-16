@@ -91,3 +91,28 @@
     margin-top: 15px;
     color: #777;
 }
+@media (max-width: 600px) {
+    .checkout-page {
+        padding: 30px 15px;
+    }
+    .checkout-box {
+        padding: 25px 20px;
+    }
+    .checkout-box h1 {
+        font-size: 30px;
+        margin-bottom: 25px;
+    }
+    .checkout-item {
+        gap: 10px;
+    }
+    .checkout-item-left {
+        gap: 10px;
+    }
+    .checkout-item img {
+        width: 50px;
+        height: 50px;
+    }
+    .checkout-item strong {
+        font-size: 14px;
+    }
+}

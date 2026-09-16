@@ -207,6 +207,70 @@
     padding-top: 15px;
     border-top: 1px solid #eee;
 }
+.users-admin-container {
+    display: flex;
+    flex-direction: column;
+}
+.admin-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid #eee;
+}
+.admin-user:last-child {
+    border-bottom: none;
+}
+.admin-user-info strong {
+    font-size: 16px;
+}
+.admin-user-info p {
+    margin: 5px 0 0;
+    color: #999;
+    font-size: 13px;
+}
+.admin-user-role select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+}
+.admin-review {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+.admin-review-info strong {
+    font-size: 16px;
+}
+.admin-review-info p {
+    margin: 5px 0;
+    color: #777;
+}
+.admin-review-info p:nth-child(2) {
+    color: orange;
+}
+.admin-review-info small {
+    color: #aaa;
+}
+.delete-review-button {
+    height: 35px;
+    padding: 0 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    color: red;
+    cursor: pointer;
+}
+
+@media (max-width: 700px) {
+    .admin-user {
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
 
 @media (max-width: 700px) {
 
@@ -231,4 +295,62 @@
         grid-column: 2;
     }
 
+}
+@media (max-width: 500px) {
+    .admin-heading h1 {
+        font-size: 32px;
+    }
+    .section-heading {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+    .section-heading h2 {
+        font-size: 24px;
+    }
+    #add-flower-button {
+        width: 100%;
+    }
+    .admin-flower {
+        grid-template-columns: 55px 1fr;
+        gap: 12px;
+    }
+    .admin-flower img {
+        width: 55px;
+        height: 55px;
+    }
+    .admin-flower-info h3 {
+        font-size: 15px;
+    }
+    .admin-flower-actions {
+        width: 100%;
+    }
+    .admin-flower-actions button {
+        flex: 1;
+    }
+    .admin-order-top {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+    .admin-order-bottom {
+        align-items: flex-start;
+        gap: 10px;
+        flex-direction: column;
+    }
+    .admin-review {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .delete-review-button {
+        width: 100%;
+    }
+    .admin-user {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .admin-user-role,
+    .admin-user-role select {
+        width: 100%;
+    }
 }

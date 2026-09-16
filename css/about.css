@@ -1,0 +1,175 @@
+.about-page {
+    background-color: #f2f2f2;
+    padding: 80px 60px 100px;
+}
+.about-hero {
+    max-width: 1200px;
+    margin: 0 auto 120px;
+}
+.about-hero p {
+    margin: 0 0 20px;
+    color: orange;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.about-hero h1 {
+    margin: 0;
+    font-size: clamp(60px, 9vw, 120px);
+    line-height: 0.85;
+    letter-spacing: -6px;
+}
+.about-hero h1 span {
+    color: orange;
+}
+.about-story {
+    max-width: 950px;
+    margin: 0 auto 100px;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 60px;
+}
+.about-number {
+    color: orange;
+    font-size: 100px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-right: 30px;
+}
+.about-story h2 {
+    margin: 0 0 25px;
+    font-size: 45px;
+    letter-spacing: -1px;
+}
+.about-story p {
+    max-width: 650px;
+    color: #777;
+    line-height: 1.8;
+}
+.about-image {
+    max-width: 1200px;
+    height: 550px;
+    margin: 0 auto 100px;
+    overflow: hidden;
+}
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.about-values {
+    max-width: 1200px;
+    margin: 0 auto 120px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid #ccc;
+}
+.about-value {
+    padding: 30px 25px 0 0;
+}
+.about-value + .about-value {
+    padding-left: 25px;
+    border-left: 1px solid #ccc;
+}
+.about-value span {
+    color: orange;
+    font-size: 22px;
+    font-weight: bold;
+}
+.about-value h3 {
+    margin: 35px 0 10px;
+    font-size: 30px;
+}
+.about-value p {
+    max-width: 250px;
+    color: #777;
+    line-height: 1.6;
+}
+.about-contact {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 70px;
+    background-color: #111;
+    color: white;
+}
+.about-contact p {
+    margin: 0 0 20px;
+    color: orange;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.about-contact h2 {
+    margin: 0 0 40px;
+    font-size: 65px;
+    line-height: 0.9;
+    letter-spacing: -3px;
+}
+.about-contact h2 span {
+    color: orange;
+}
+.about-contact a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+.about-contact a:hover {
+    color: orange;
+}
+@media (max-width: 700px) {
+    .about-page {
+        padding: 45px 20px 70px;
+    }
+    .about-hero {
+        margin-bottom: 70px;
+    }
+    .about-story {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 70px;
+    }
+    .about-story h2 {
+        font-size: 34px;
+    }
+    .about-image {
+        height: 350px;
+        margin-bottom: 70px;
+    }
+    .about-values {
+        grid-template-columns: 1fr;
+    }
+    .about-value + .about-value {
+        padding-left: 0;
+        border-left: none;
+        border-top: 1px solid #ccc;
+        margin-top: 25px;
+    }
+    .about-contact {
+        padding: 40px 30px;
+    }
+    .about-contact h2 {
+        font-size: 45px;
+    }
+}
+@media (max-width: 500px) {
+    .about-hero h1 {
+        font-size: 58px;
+        letter-spacing: -3px;
+    }
+    .about-number {
+        font-size: 70px;
+    }
+    .about-story h2 {
+        font-size: 30px;
+    }
+    .about-image {
+        height: 280px;
+    }
+    .about-contact {
+        padding: 35px 25px;
+    }
+    .about-contact h2 {
+        font-size: 38px;
+        letter-spacing: -2px;
+    }
+}

@@ -7,6 +7,7 @@
     <title>FlowerShop</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/flower.css">
+    <link rel="shortcut icon" href="../icons/favicon-logo.png" type="image/x-icon">
 </head>
 <body>
     <nav>
@@ -18,15 +19,13 @@
             <a href="./shop.html">Shop</a>
             <a href="">Blog</a>
             <a href="">About</a>
+             <a href="./admin.html" id="admin-link" style="display: none;"> Admin </a>
         </div>
         <div class="right-nav">
                 <a href="./login.html" id="profile-link">
                   <img src="../icons/profile-icon.png" alt="profile">
                 </a>
                 <a href="./cart.html"><img src="../icons/cart-icon.png" alt="cart"></a>
-                <a href="./admin.html" id="admin-link" style="display: none;">
-                                        Admin
-                                        </a>
         </div>
     </nav>
 
@@ -58,6 +57,15 @@
         </div>
         <div id="reviews-container"></div>
     </section>
+
+        <section class="related-section">
+                <div class="related-heading">
+                                <p>MORE FLOWERS</p>
+                                <h2>You may also like</h2>
+                        </div>
+                        <div class="related-grid" id="related-container"></div>
+                <button id="related-more">Show more</button>
+        </section>
 </main>
 
     <footer>

@@ -18,14 +18,13 @@ import {
 
 const flowersContainer = document.querySelector("#flowers-admin-container");
 const ordersContainer = document.querySelector("#orders-admin-container");
-
+const reviewsAdminContainer = document.querySelector("#reviews-admin-container");
 const addFlowerButton = document.querySelector("#add-flower-button");
 const formContainer = document.querySelector("#flower-form-container");
 const flowerForm = document.querySelector("#flower-form");
 const cancelForm = document.querySelector("#cancel-form");
-
+const usersContainer = document.querySelector("#users-admin-container");
 const formTitle = document.querySelector("#form-title");
-
 const nameInput = document.querySelector("#flower-name");
 const descriptionInput = document.querySelector("#flower-description");
 const priceInput = document.querySelector("#flower-price");
@@ -33,7 +32,6 @@ const imageInput = document.querySelector("#flower-image");
 const categoryInput = document.querySelector("#flower-category");
 const stockInput = document.querySelector("#flower-stock");
 const featuredInput = document.querySelector("#flower-featured");
-
 let editingFlowerId = null;
 
 
@@ -60,9 +58,9 @@ onAuthStateChanged(auth, async (user) => {
         window.location.href = "./index.html";
         return;
     }
-
-    loadFlowers();
-    loadOrders();
+        loadFlowers();
+        loadOrders();
+        loadUsers();
 
 });
 
@@ -457,6 +455,95 @@ function editFlower(flower) {
 
 }
 
+function loadUsers() {
+    onSnapshot(collection(db, "users"), (snapshot) => {
+        const users = [];
+        snapshot.forEach((userDoc) => {
+            users.push({
+                id: userDoc.id,
+                ...userDoc.data()
+            });
+        });
+        renderUsers(users);
+    });
+}
+function renderUsers(users) {
+    usersContainer.innerHTML = "";
+    if (users.length === 0) {
+        usersContainer.innerHTML = "<p>No users yet.</p>";
+        return;
+    }
+    users.forEach((user) => {
+        const element = document.createElement("div");
+        element.classList.add("admin-user");
+        element.innerHTML = `
+            <div class="admin-user-info">
+                <strong>${user.name || "User"}</strong>
+                <p>${user.email || "-"}</p>
+            </div>
+            <div class="admin-user-role">
+                <select>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+        `;
+        const roleSelect = element.querySelector("select");
+        roleSelect.value = user.role || "user";
+        roleSelect.addEventListener("change", async () => {
+            try {
+                await updateDoc(doc(db, "users", user.id), {
+                    role: roleSelect.value
+                });
+            } catch (error) {
+                console.error(error);
+                alert("Could not change role");
+                roleSelect.value = user.role || "user";
+            }
+        });
+        usersContainer.appendChild(element);
+    });
+}
+
+function loadReviews() {
+    onSnapshot(collection(db, "reviews"), async (snapshot) => {
+        const reviews = [];
+        snapshot.forEach((reviewDoc) => {
+            reviews.push({
+                id: reviewDoc.id,
+                ...reviewDoc.data()
+            });
+        });
+        renderAdminReviews(reviews);
+    });
+}
+function renderAdminReviews(reviews) {
+    reviewsAdminContainer.innerHTML = "";
+    if (reviews.length === 0) {
+        reviewsAdminContainer.innerHTML = "<p>No reviews yet.</p>";
+        return;
+    }
+    reviews.forEach((review) => {
+        const element = document.createElement("div");
+        element.classList.add("admin-review");
+        const stars = "★".repeat(review.rating) + "☆".repeat(5 - review.rating);
+        element.innerHTML = `
+            <div class="admin-review-info">
+                <strong>${review.userName || "User"}</strong>
+                <p>${stars}</p>
+                <p>${review.text}</p>
+                <small>Flower ID: ${review.flowerId}</small>
+            </div>
+            <button class="delete-review-button">Delete</button>
+        `;
+        element.querySelector(".delete-review-button").addEventListener("click", async () => {
+            if (confirm("Delete this review?")) {
+                await deleteDoc(doc(db, "reviews", review.id));
+            }
+        });
+        reviewsAdminContainer.appendChild(element);
+    });
+}
 
 async function deleteFlower(flowerId) {
 
