@@ -70,9 +70,7 @@ function loadFlowers() {
     onSnapshot(
         collection(db, "flowers"),
         (snapshot) => {
-
             flowersContainer.innerHTML = "";
-
             snapshot.forEach((flowerDoc) => {
 
                 const flower = {
@@ -81,9 +79,7 @@ function loadFlowers() {
                 };
 
                 const element = document.createElement("div");
-
                 element.classList.add("admin-flower");
-
                 element.innerHTML = `
                     <img
                         src="${flower.image}"
@@ -91,35 +87,25 @@ function loadFlowers() {
                     >
 
                     <div class="admin-flower-info">
-
                         <h3>${flower.name}</h3>
-
                         <p>Price: ${flower.price}$</p>
-
                         <p>
                             Category: ${flower.category || "-"}
                         </p>
-
                         <p>
                             Stock: ${flower.stock || 0}
                         </p>
-
                         <p>
                             ${flower.featured ? "Featured" : ""}
                         </p>
-
                     </div>
-
                     <div class="admin-flower-actions">
-
                         <button class="edit-button">
                             Edit
                         </button>
-
                         <button class="delete-button">
                             Delete
                         </button>
-
                     </div>
                 `;
 
@@ -165,22 +151,16 @@ function loadOrders() {
 
             });
 
-
             orders.sort((a, b) => {
 
                 const dateA =
                     a.createdAt?.toDate?.() || new Date(0);
-
                 const dateB =
                     b.createdAt?.toDate?.() || new Date(0);
-
                 return dateB - dateA;
 
             });
-
-
             renderOrders(orders);
-
         }
     );
 
@@ -188,55 +168,37 @@ function loadOrders() {
 
 
 function renderOrders(orders) {
-
     ordersContainer.innerHTML = "";
-
     if (orders.length === 0) {
-
         ordersContainer.innerHTML = `
             <p>No orders yet.</p>
         `;
-
         return;
     }
 
-
     orders.forEach((order) => {
-
         const element = document.createElement("div");
-
         element.classList.add("admin-order");
-
-
         let itemsHTML = "";
-
         order.items.forEach((item) => {
-
             itemsHTML += `
                 <div class="admin-order-item">
-
                     <span>
                         ${item.name} × ${item.quantity}
                     </span>
-
                     <strong>
                         ${item.price * item.quantity}$
                     </strong>
 
                 </div>
             `;
-
         });
-
-
         element.innerHTML = `
 
             <div class="admin-order-top">
-
                 <p>
                     Order #${order.id.slice(0, 8)}
                 </p>
-
                 <select class="admin-order-status">
 
                     <option value="pending">
@@ -254,21 +216,14 @@ function renderOrders(orders) {
                     <option value="cancelled">
                         Cancelled
                     </option>
-
                 </select>
-
             </div>
-
 
             <div class="admin-order-items">
-
                 ${itemsHTML}
-
             </div>
 
-
             <div class="admin-order-bottom">
-
                 <span>
                     User: ${order.userId}
                 </span>
@@ -276,31 +231,23 @@ function renderOrders(orders) {
                 <strong>
                     Total: ${order.total}$
                 </strong>
-
             </div>
-
         `;
 
 
         const statusSelect =
             element.querySelector(".admin-order-status");
-
-
         statusSelect.value =
             order.status || "pending";
-
-
         statusSelect.addEventListener(
             "change",
             async () => {
-
                 await updateDoc(
                     doc(db, "orders", order.id),
                     {
                         status: statusSelect.value
                     }
                 );
-
                 updateActiveAction(
                     order.id,
                     statusSelect.value
@@ -308,10 +255,7 @@ function renderOrders(orders) {
 
             }
         );
-
-
         ordersContainer.appendChild(element);
-
     });
 
 }
@@ -324,9 +268,7 @@ async function updateActiveAction(orderId, status) {
     );
 
     for (const actionDoc of snapshot.docs) {
-
         const action = actionDoc.data();
-
         if (action.orderId === orderId) {
 
             await updateDoc(
@@ -347,54 +289,31 @@ async function updateActiveAction(orderId, status) {
 }
 
 addFlowerButton.addEventListener("click", () => {
-
     editingFlowerId = null;
-
     formTitle.textContent = "Add flower";
-
     flowerForm.reset();
-
     formContainer.style.display = "block";
-
 });
 
 
 cancelForm.addEventListener("click", () => {
-
     formContainer.style.display = "none";
-
     flowerForm.reset();
-
     editingFlowerId = null;
 
 });
-
-
 flowerForm.addEventListener("submit", async (event) => {
-
     event.preventDefault();
-
-
     const flowerData = {
-
         name: nameInput.value.trim(),
-
         description: descriptionInput.value.trim(),
-
         price: Number(priceInput.value),
-
         image: imageInput.value.trim(),
-
         category: categoryInput.value.trim(),
-
         stock: Number(stockInput.value),
-
         featured: featuredInput.checked,
-
         rating: 0,
-
         createdAt: new Date()
-
     };
 
 
@@ -413,23 +332,15 @@ flowerForm.addEventListener("submit", async (event) => {
         );
 
     }
-
-
     formContainer.style.display = "none";
-
     flowerForm.reset();
-
     editingFlowerId = null;
-
 });
 
 
 function editFlower(flower) {
-
     editingFlowerId = flower.id;
-
     formTitle.textContent = "Edit flower";
-
     nameInput.value =
         flower.name || "";
 
