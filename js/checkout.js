@@ -114,15 +114,6 @@ placeOrderButton.addEventListener("click", async () => {
     }
 }
 
-for (const item of cartItems) {
-    const flowerRef = doc(db, "flowers", item.flowerId);
-    const flowerDoc = await getDoc(flowerRef);
-    const flower = flowerDoc.data();
-    await updateDoc(flowerRef, {
-        stock: flower.stock - item.quantity
-    });
-}
-
         let total = 0;
         const orderItems = cartItems.map((item) => {
             total += item.price * item.quantity;

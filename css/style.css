@@ -236,7 +236,48 @@ nav{
     width: 18px;
     height: 18px;
 }
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
 
+.pagination button {
+    width: 45px;
+    height: 45px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f58220;
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination button:hover {
+    opacity: 0.8;
+}
+
+.pagination button:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.pagination span {
+    font-size: 18px;
+    min-width: 20px;
+    text-align: center;
+}
 /* latest photo */
 
 .latest-photo {
