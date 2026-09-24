@@ -63,6 +63,14 @@ function showPage(page) {
             </div>
         `;
 
+        card.addEventListener("click", (event) => {
+            if (event.target.closest("button")) {
+                return;
+            }
+
+            window.location.href = `./flower.html?id=${flower.id}`;
+        });
+
         flowersContainer.appendChild(card);
     });
 
