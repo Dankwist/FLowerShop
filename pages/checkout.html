@@ -17,8 +17,9 @@
         <div class="center-nav">
             <a href="./index.html">Home</a>
             <a href="./shop.html">Shop</a>
-            <a href="">Blog</a>
-            <a href="">About</a>
+            <a href="./blog.html">Blog</a>
+            <a href="./about.html">About</a>
+             <a href="./ai-florist.html">AI Florist</a>
              <a href="./admin.html" id="admin-link" style="display: none;"> Admin </a>
         </div>
 
@@ -36,7 +37,51 @@
             <h1>Checkout</h1>
 
             <div id="checkout-items"></div>
+            <div class="payment-section">
+    <div class="payment-heading">
+        <h2>Payment method</h2>
+        <span>DEMO PAYMENT</span>
+    </div>
 
+    <div id="checkout-saved-cards"></div>
+
+    <button id="checkout-add-card" class="add-payment-button">
+        + Add new card
+    </button>
+
+    <form id="checkout-card-form" style="display: none;">
+        <label>Card number</label>
+        <input type="text" id="checkout-card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+
+        <label>Card holder</label>
+        <input type="text" id="checkout-card-holder" placeholder="JOHN DOE">
+
+        <div class="checkout-card-row">
+            <div>
+                <label>Expiry</label>
+                <input type="text" id="checkout-card-expiry" placeholder="MM/YY" maxlength="5">
+            </div>
+
+            <div>
+                <label>CVV</label>
+                <input type="password" id="checkout-card-cvv" placeholder="123" maxlength="3">
+            </div>
+        </div>
+
+        <label class="save-card-label">
+            <input type="checkbox" id="checkout-save-card">
+            Save this card
+        </label>
+
+        <button type="submit">Use this card</button>
+
+        <p id="checkout-card-message"></p>
+    </form>
+
+    <p class="demo-payment-note">
+        Demo payment — no real money will be charged.
+    </p>
+</div>
             <div class="checkout-total">
                 <span>Total</span>
                 <strong id="checkout-total">$0</strong>

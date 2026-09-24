@@ -101,7 +101,12 @@
     border: 0;
 }
 
-
+.recommended-flower {
+    outline: 2px solid #111;
+    outline-offset: 8px;
+    transform: translateY(-5px);
+    transition: .3s;
+}
 
 .shop-filters {
     display: flex;
@@ -233,3 +238,4 @@
         gap: 20px;
     }
 }
+

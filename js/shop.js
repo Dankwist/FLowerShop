@@ -1,4 +1,3 @@
-
 import { auth, db } from "./firebase.js";
 import {
     collection,
@@ -20,11 +19,14 @@ const sortSelect = document.querySelector("#sort-select");
 const resetButton = document.querySelector("#reset-filters");
 const flowersRef = collection(db, "flowers");
 const productsPerPage = 8;
+
 let lastDoc = null;
 let allFlowers = [];
 let searchText = "";
 let selectedCategory = "all";
 let selectedSort = "default";
+let loading = false;
+
 async function addToCart(flower) {
     if (!auth.currentUser) {
         window.location.href = "./login.html";
@@ -60,13 +62,18 @@ async function addToCart(flower) {
 
     alert("Added to cart");
 }
+
 function createFlowerCard(flower) {
-  const card = document.createElement("div");
+    const card = document.createElement("div");
+
     card.classList.add("selers-card");
+    card.dataset.flowerId = flower.id;
+
     card.addEventListener("click", () => {
-    window.location.href = `./flower.html?id=${flower.id}`;
+        window.location.href = `./flower.html?id=${flower.id}`;
     });
-  card.innerHTML = `
+
+    card.innerHTML = `
         <img src="${flower.image}" alt="${flower.name}">
         <p>${flower.name}</p>
         <div class="selers-card-bottom">
@@ -75,149 +82,241 @@ function createFlowerCard(flower) {
                     ${flower.price}$
                 </span>
             </p>
-
-            <button>
+            <button type="button">
                 <img src="../icons/cart-icon.png" alt="cart">
                 Add to cart
             </button>
         </div>
     `;
 
-  flowersContainer.appendChild(card);
+    const cartButton = card.querySelector("button");
+
+    cartButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        addToCart(flower);
+    });
+
+    flowersContainer.appendChild(card);
 }
 
 async function loadFlowers() {
-  let flowersQuery;
+    if (loading) {
+        return;
+    }
 
-  if (selectedCategory === "all") {
-    flowersQuery = query(flowersRef, limit(productsPerPage));
-  } else {
-    flowersQuery = query(
-      flowersRef,
-      where("category", "==", selectedCategory),
-      limit(productsPerPage),
-    );
-  }
+    loading = true;
 
-  if (lastDoc) {
-    flowersQuery = query(
-      flowersRef,
-      ...(selectedCategory !== "all"
-        ? [where("category", "==", selectedCategory)]
-        : []),
-      startAfter(lastDoc),
-      limit(productsPerPage),
-    );
-  }
+    let flowersQuery;
 
-  const snapshot = await getDocs(flowersQuery);
-  snapshot.forEach((doc) => {
-        const flower = {
-        id: doc.id,
-        ...doc.data()
-};
+    if (selectedCategory === "all") {
+        flowersQuery = query(
+            flowersRef,
+            limit(productsPerPage)
+        );
+    } else {
+        flowersQuery = query(
+            flowersRef,
+            where("category", "==", selectedCategory),
+            limit(productsPerPage)
+        );
+    }
 
-allFlowers.push(flower);
-  });
+    if (lastDoc) {
+        flowersQuery = query(
+            flowersRef,
+            ...(selectedCategory !== "all"
+                ? [where("category", "==", selectedCategory)]
+                : []),
+            startAfter(lastDoc),
+            limit(productsPerPage)
+        );
+    }
 
-  lastDoc =
-    snapshot.docs.length > 0 ? snapshot.docs[snapshot.docs.length - 1] : null;
+    try {
+        const snapshot = await getDocs(flowersQuery);
 
-  renderFlowers();
+        snapshot.forEach((doc) => {
+            const flower = {
+                id: doc.id,
+                ...doc.data()
+            };
 
-  if (snapshot.docs.length < productsPerPage) {
-    showMoreButton.style.display = "none";
-  } else {
-    showMoreButton.style.display = "block";
-  }
+            allFlowers.push(flower);
+        });
+
+        lastDoc =
+            snapshot.docs.length > 0
+                ? snapshot.docs[snapshot.docs.length - 1]
+                : null;
+
+        renderFlowers();
+
+        if (snapshot.docs.length < productsPerPage) {
+            showMoreButton.style.display = "none";
+        } else {
+            showMoreButton.style.display = "block";
+        }
+    } catch (error) {
+        console.error("Error loading flowers:", error);
+    } finally {
+        loading = false;
+    }
 }
 
 function renderFlowers() {
-  flowersContainer.innerHTML = "";
-  let flowers = [...allFlowers];
-  if (searchText !== "") {
-    flowers = flowers.filter((flower) => {
-      const name = flower.name.toLowerCase();
-      const description = flower.description
-        ? flower.description.toLowerCase()
-        : "";
+    flowersContainer.innerHTML = "";
 
-      return name.includes(searchText) || description.includes(searchText);
-    });
-  }
-  if (selectedSort === "price-asc") {
-    flowers.sort((a, b) => a.price - b.price);
-  }
+    let flowers = [...allFlowers];
 
-  if (selectedSort === "price-desc") {
-    flowers.sort((a, b) => b.price - a.price);
-  }
+    if (searchText !== "") {
+        flowers = flowers.filter((flower) => {
+            const name = flower.name.toLowerCase();
+            const description = flower.description
+                ? flower.description.toLowerCase()
+                : "";
 
-  if (selectedSort === "name-asc") {
-    flowers.sort((a, b) => a.name.localeCompare(b.name));
-  }
+            return (
+                name.includes(searchText) ||
+                description.includes(searchText)
+            );
+        });
+    }
 
-  if (selectedSort === "name-desc") {
-    flowers.sort((a, b) => b.name.localeCompare(a.name));
-  }
+    if (selectedSort === "price-asc") {
+        flowers.sort((a, b) => a.price - b.price);
+    }
 
-  if (flowers.length === 0) {
-    flowersContainer.innerHTML = `
+    if (selectedSort === "price-desc") {
+        flowers.sort((a, b) => b.price - a.price);
+    }
+
+    if (selectedSort === "name-asc") {
+        flowers.sort((a, b) =>
+            a.name.localeCompare(b.name)
+        );
+    }
+
+    if (selectedSort === "name-desc") {
+        flowers.sort((a, b) =>
+            b.name.localeCompare(a.name)
+        );
+    }
+
+    if (flowers.length === 0) {
+        flowersContainer.innerHTML = `
             <p class="no-products">
                 No flowers found
             </p>
         `;
-    return;
-  }
+        return;
+    }
 
-  flowers.forEach((flower) => {
-    createFlowerCard(flower);
-  });
+    flowers.forEach((flower) => {
+        createFlowerCard(flower);
+    });
+}
+
+async function openRecommendedFlower() {
+    const params = new URLSearchParams(window.location.search);
+    const flowerId = params.get("flower");
+
+    if (!flowerId) {
+        return;
+    }
+
+    let flower = allFlowers.find(
+        (item) => item.id === flowerId
+    );
+
+    while (!flower && showMoreButton.style.display !== "none") {
+        await loadFlowers();
+
+        flower = allFlowers.find(
+            (item) => item.id === flowerId
+        );
+    }
+
+    if (!flower) {
+        console.log("Recommended flower not found:", flowerId);
+        return;
+    }
+
+    renderFlowers();
+
+    const card = document.querySelector(
+        `[data-flower-id="${flowerId}"]`
+    );
+
+    if (!card) {
+        return;
+    }
+
+    setTimeout(() => {
+        card.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        card.classList.add("recommended-flower");
+
+        setTimeout(() => {
+            card.classList.remove("recommended-flower");
+        }, 3000);
+    }, 300);
 }
 
 showMoreButton.addEventListener("click", () => {
-  loadFlowers();
+    loadFlowers();
 });
+
 searchForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  searchText = searchInput.value.trim().toLowerCase();
-  renderFlowers();
+    event.preventDefault();
+
+    searchText = searchInput.value.trim().toLowerCase();
+
+    renderFlowers();
 });
 
 searchInput.addEventListener("input", () => {
-  searchText = searchInput.value.trim().toLowerCase();
+    searchText = searchInput.value.trim().toLowerCase();
 
-  renderFlowers();
+    renderFlowers();
 });
 
 categoryFilter.addEventListener("change", () => {
-  selectedCategory = categoryFilter.value;
-  lastDoc = null;
-  allFlowers = [];
-  flowersContainer.innerHTML = "";
-  showMoreButton.style.display = "block";
+    selectedCategory = categoryFilter.value;
+    lastDoc = null;
+    allFlowers = [];
 
-  loadFlowers();
+    flowersContainer.innerHTML = "";
+    showMoreButton.style.display = "block";
+
+    loadFlowers();
 });
 
 sortSelect.addEventListener("change", () => {
-  selectedSort = sortSelect.value;
+    selectedSort = sortSelect.value;
 
-  renderFlowers();
+    renderFlowers();
 });
 
 resetButton.addEventListener("click", () => {
-  searchInput.value = "";
-  categoryFilter.value = "all";
-  sortSelect.value = "default";
-  searchText = "";
-  selectedCategory = "all";
-  selectedSort = "default";
-  lastDoc = null;
-  allFlowers = [];
-  flowersContainer.innerHTML = "";
-  showMoreButton.style.display = "block";
-  loadFlowers();
+    searchInput.value = "";
+    categoryFilter.value = "all";
+    sortSelect.value = "default";
+
+    searchText = "";
+    selectedCategory = "all";
+    selectedSort = "default";
+    lastDoc = null;
+    allFlowers = [];
+
+    flowersContainer.innerHTML = "";
+    showMoreButton.style.display = "block";
+
+    loadFlowers();
 });
 
-loadFlowers();
+loadFlowers().then(() => {
+    openRecommendedFlower();
+});

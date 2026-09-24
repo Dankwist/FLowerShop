@@ -91,6 +91,180 @@
     margin-top: 15px;
     color: #777;
 }
+.payment-section {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid #ddd;
+}
+
+.payment-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.payment-heading h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.payment-heading span {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #f28c28;
+    font-weight: 700;
+}
+
+#checkout-saved-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.checkout-saved-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    padding: 16px;
+    margin: 0;
+    background: #fafafa;
+    color: #222;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.checkout-saved-card:hover {
+    border-color: #222;
+}
+
+.checkout-saved-card.selected {
+    border: 2px solid #f28c28;
+    padding: 15px;
+}
+
+.checkout-saved-card strong {
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.checkout-saved-card p {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 12px;
+}
+
+.checkout-saved-card span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #f28c28;
+}
+
+.no-saved-cards {
+    margin: 10px 0;
+    color: #777;
+    font-size: 13px;
+}
+
+.add-payment-button {
+    width: auto !important;
+    margin: 12px 0 0 !important;
+    padding: 10px 15px !important;
+    background: transparent !important;
+    color: #222 !important;
+    border: 1px solid #ddd !important;
+    font-size: 12px !important;
+}
+
+.add-payment-button:hover {
+    border-color: #222 !important;
+}
+
+#checkout-card-form {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+#checkout-card-form label {
+    display: block;
+    margin: 12px 0 7px;
+    font-size: 12px;
+    color: #555;
+}
+
+#checkout-card-form label:first-child {
+    margin-top: 0;
+}
+
+#checkout-card-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.checkout-card-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.save-card-label {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.save-card-label input {
+    width: auto !important;
+}
+
+#checkout-card-form button {
+    width: auto;
+    margin-top: 15px;
+    padding: 11px 18px;
+}
+
+#checkout-card-message {
+    margin-top: 10px;
+    color: #d44;
+    font-size: 13px;
+}
+
+.demo-payment-note {
+    margin-top: 15px;
+    color: #999;
+    font-size: 11px;
+    text-align: center;
+    letter-spacing: .3px;
+}
+
+@media (max-width: 600px) {
+    .saved-card {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .saved-card-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .card-form-row,
+    .checkout-card-row {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 600px) {
     .checkout-page {
         padding: 30px 15px;

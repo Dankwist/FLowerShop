@@ -23,10 +23,11 @@
     border-radius: 8px;
 }
 
-.flower-info {
+.product-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-width: 0;
 }
 
 .flower-category {
@@ -155,7 +156,7 @@
     color: #999;
 }
 
-.flower-info h1 {
+.product-info h1 {
     font-size: 42px;
     margin: 10px 0;
 }
@@ -277,20 +278,25 @@
     .flower-page {
         padding: 35px 30px;
     }
+
     .flower-main {
         grid-template-columns: 1fr;
         gap: 30px;
         padding: 20px;
     }
+
     .flower-image img {
         height: 450px;
     }
-    .flower-info h1 {
+
+    .product-info h1 {
         font-size: 36px;
     }
+
     .related-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
 }
 @media (max-width: 600px) {
     .flower-page {
@@ -303,9 +309,9 @@
     .flower-image img {
         height: 330px;
     }
-    .flower-info h1 {
-        font-size: 32px;
-    }
+    .product-info h1 {
+    font-size: 32px;
+}
     .flower-description {
         font-size: 14px;
     }

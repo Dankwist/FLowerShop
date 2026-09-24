@@ -6,6 +6,14 @@
         <title>FlowerShop</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="shortcut icon" href="../icons/favicon-logo.png" type="image/x-icon">
+        <script type="importmap">
+{
+    "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+    }
+}
+</script>
 </head>
 <body>
         <nav>
@@ -17,6 +25,7 @@
                                 <a href="./shop.html">Shop</a>
                                 <a href="./blog.html">Blog</a>
                                 <a href="./about.html">About</a>
+                                <a href="./ai-florist.html">AI Florist</a>
                                 <a href="./admin.html" id="admin-link" style="display: none;">
         Admin
     </a>
@@ -30,21 +39,41 @@
                                 </div>
         </nav>
                 <main>
-                        <section class="hero">
-                                        <div class="hero-left">
-                                                        <h1>Flowers, 🌻<br>what the world <br>needs</h1>
-                                                        <p>Browse between hounders of flowers</p>
-                                                        <button>Browse</button>
-                                        </div>
+                                                <section class="hero" id="time-hero">
 
-                                                <div class="hero-right">
-                                                        <img src="../img-flower/flower-hero1.png" alt="flower">
-                                                        <img src="../img-flower/flower-hero2.png" alt="flower">
-                                                        <img src="../img-flower/flower-hero3.png" alt="flower">
-                                                        <img src="../img-flower/flower-hero4.png" alt="flower">
-                                                        <img src="../img-flower/flower-hero5.png" alt="flower">
-                                                        <img src="../img-flower/flower-hero6.png" alt="flower">
-                                                </div>
+                        <video
+                                class="hero-video"
+                                id="time-video"
+                                autoplay
+                                muted
+                                playsinline
+                                loop
+                                preload="auto"
+                        >
+                                <source src="../video/flower.mp4" type="video/mp4">
+                        </video>
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+
+                                <div class="hero-time">
+                                <span id="time-state">DAY</span>
+                                <span class="time-dot">•</span>
+                                <span id="current-time">13:42</span>
+                                </div>
+
+                                <h1 id="hero-title">
+                                Flowers,<br>
+                                what the world needs
+                                </h1>
+
+                                <p id="hero-description">
+                                Find the flower that fits your moment.
+                                </p>
+
+                                <button id="browse-button">
+                                Browse flowers
+                                </button>
+                        </div>
                         </section>
 
 
@@ -66,7 +95,41 @@
                         </div>
 
                         </section>
+                                                                        <div class="flower-3d">
+                                        <div class="flower-info">
+                                                <span class="flower-index">01 / SPECIMEN</span>
+                                                <span class="flower-type">HELIANTHUS ANNUUS</span>
+                                                <h2>Sunflower</h2>
+                                                <p>A flower that follows the light.</p>
+                                        </div>
 
+                                        <div class="flower-3d-view" id="flower-3d">
+                                                <div class="flower-hotspot hotspot-petals" data-title="PETALS" data-text="Bright outer petals surrounding the flower head."></div>
+                                                <div class="flower-hotspot hotspot-seeds" data-title="SEEDS" data-text="The central structure contains hundreds of developing seeds."></div>
+                                                <div class="flower-hotspot hotspot-stem" data-title="STEM" data-text="The stem supports the flower and follows the light.">
+                                                </div>
+
+                                                <div class="flower-tooltip">
+                                                <span></span>
+                                                <p></p>
+                                                </div>
+                                        </div>
+
+                                        <div class="flower-controls">
+                                                <span class="flower-controls-title">FLOWER / 001</span>
+                                                <button data-view="front">FRONT</button>
+                                                <button data-view="side">SIDE</button>
+                                                <button data-view="detail">DETAIL</button>
+                                        </div>
+
+                                        <div class="flower-stats">
+                                                <span>SPECIES <b>HELIANTHUS</b></span>
+                                                <span>FAMILY <b>ASTERACEAE</b></span>
+                                                <span>STATUS <b>IN BLOOM</b></span>
+                                        </div>
+
+                                        <div class="flower-hint">DRAG TO EXPLORE ↗</div>
+                                        </div>
 
                                         <section class="latest-photo">
                                                 <div class="best-selers-title">
@@ -243,7 +306,9 @@
                                 </ul>
                         </div>
         </footer>
+ <script type="module" src="../js/time-hero.js"></script>
 <script type="module" src="../js/catalog.js"></script>
 <script type="module" src="../js/user-nav.js"></script>
+<script type="module" src="../js/flower-3d.js"></script>
 </body>
 </html>

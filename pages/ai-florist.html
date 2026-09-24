@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Florist — FlowerShop</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="shortcut icon" href="../icons/favicon-logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/ai-florist.css">
+</head>
+<body>
+    <nav>
+        <div class="left-nav">
+            <h2><span class="orange-logo">Flower</span>Shop</h2>
+        </div>
+
+        <div class="center-nav">
+            <a href="./index.html">Home</a>
+            <a href="./shop.html">Shop</a>
+            <a href="./blog.html">Blog</a>
+            <a href="./about.html">About</a>
+            <a href="./ai-florist.html" class="active">AI Florist</a>
+            <a href="./admin.html" id="admin-link" style="display:none;">Admin</a>
+        </div>
+
+        <div class="right-nav">
+            <a href="./login.html" id="profile-link">
+                <img src="../icons/profile-icon.png" alt="profile">
+            </a>
+            <a href="./cart.html">
+                <img src="../icons/cart-icon.png" alt="cart">
+            </a>
+        </div>
+    </nav>
+
+    <main class="ai-florist-page">
+        <section class="ai-intro">
+            <div class="ai-intro-top">
+                <span>FLOWERS / INTELLIGENCE</span>
+                <span>01 — 04</span>
+            </div>
+
+            <div class="ai-intro-content">
+                <div class="ai-small-label">✦ AI FLORIST</div>
+                <h1>Find the flower<br>for the moment.</h1>
+                <p>
+                    Tell us a little about who, why and how.
+                    We'll find something that feels right.
+                </p>
+                <button id="start-florist">START</button>
+            </div>
+
+            <div class="ai-intro-bottom">
+                <span>PERSONAL FLOWER SELECTION</span>
+                <span>FLOWERSHOP / 2026</span>
+            </div>
+        </section>
+
+        <section class="ai-quiz" id="ai-quiz">
+            <div class="ai-quiz-header">
+                <span>AI FLORIST</span>
+                <span id="question-number">01 / 04</span>
+            </div>
+
+            <div class="ai-question">
+                <span class="ai-question-label">01</span>
+                <h2 id="question-title">Who is this flower for?</h2>
+                <p id="question-description">
+                    Start with the person. Everything else follows.
+                </p>
+            </div>
+
+            <div class="ai-options" id="options"></div>
+
+            <div class="ai-quiz-footer">
+                <span id="quiz-status">CHOOSE ONE OPTION</span>
+                <button id="next-question" disabled>NEXT →</button>
+            </div>
+        </section>
+
+        <section class="ai-result" id="ai-result">
+            <div class="ai-result-header">
+                <span>YOUR MATCH</span>
+                <span>04 / 04</span>
+            </div>
+
+            <div class="ai-result-content">
+                <div class="ai-result-copy">
+                    <span>✦ RECOMMENDED FLOWER</span>
+                    <h2 id="result-name">Your flower</h2>
+                    <p id="result-description">
+                        Your personal recommendation will appear here.
+                    </p>
+
+                    <div class="ai-result-meta">
+                        <span>WHY THIS ONE</span>
+                        <p id="result-reason">
+                            Based on your answers.
+                        </p>
+                    </div>
+
+                    <div class="ai-result-actions">
+                        <button id="view-flower">VIEW FLOWER</button>
+                        <button id="restart-florist">START AGAIN</button>
+                    </div>
+                </div>
+
+                <div class="ai-result-image">
+                        <img id="result-image" src="../img-flower/flower1.png" alt="Recommended flower">
+                        <div class="ai-result-price" id="result-price">$0</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="../js/ai-florist.js"></script>
+<script type="module" src="../js/user-nav.js"></script>
+</body>
+</html>

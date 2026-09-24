@@ -84,7 +84,7 @@ async function loadFlower() {
         <div class="flower-image">
             <img src="${currentFlower.image}" alt="${currentFlower.name}">
         </div>
-        <div class="flower-info">
+        <div class="product-info">
             <p class="flower-category">${currentFlower.category || "Flowers"}</p>
             <h1>${currentFlower.name}</h1>
             <p class="flower-rating">★ ${currentFlower.rating || 0}</p>

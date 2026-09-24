@@ -134,6 +134,174 @@
 .delete-profile-review:hover {
     color: red;
 }
+.payment-methods {
+    grid-column: span 1;
+}
+
+.payment-methods .profile-card-heading {
+    align-items: center;
+}
+
+.payment-methods .profile-card-heading button {
+    width: auto;
+    margin: 0;
+    padding: 10px 16px;
+    font-size: 13px;
+}
+
+#saved-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.empty-cards {
+    padding: 20px 0;
+    color: #777;
+}
+
+.saved-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fafafa;
+}
+
+.saved-card-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.saved-card-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 35px;
+    border-radius: 6px;
+    background: #222;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.saved-card-info strong {
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.saved-card-info p {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 13px;
+}
+
+.saved-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.default-card {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #f28c28;
+}
+
+.delete-card {
+    width: auto !important;
+    margin: 0 !important;
+    padding: 7px 10px !important;
+    background: transparent !important;
+    color: #888 !important;
+    border: 1px solid #ddd !important;
+    font-size: 11px !important;
+}
+
+.delete-card:hover {
+    color: #222 !important;
+    border-color: #222 !important;
+}
+
+#profile-card-form {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+#profile-card-form label {
+    display: block;
+    margin: 12px 0 7px;
+    font-size: 12px;
+    color: #555;
+}
+
+#profile-card-form input:not([type="checkbox"]) {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.card-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.default-card-label {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.default-card-label input {
+    width: auto !important;
+    margin: 0 !important;
+}
+
+.card-form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.card-form-buttons button {
+    width: auto;
+    margin: 0;
+}
+
+.card-form-buttons button[type="button"] {
+    background: transparent;
+    color: #555;
+    border: 1px solid #ddd;
+}
+
+#card-message {
+    margin-top: 12px;
+    font-size: 13px;
+}
+.make-default-card {
+    width: auto !important;
+    margin: 0 !important;
+    padding: 7px 10px !important;
+    background: transparent !important;
+    color: #555 !important;
+    border: 1px solid #ddd !important;
+    font-size: 11px !important;
+}
+
+.make-default-card:hover {
+    color: #222 !important;
+    border-color: #222 !important;
+}
+
+
 @media (max-width: 700px) {
     .profile-page {
         padding: 30px 20px;
