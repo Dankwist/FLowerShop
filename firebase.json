@@ -1,0 +1,19 @@
+{
+    "firestore": {
+        "database": "(default)",
+        "location": "eur3",
+        "rules": "firestore.rules",
+        "indexes": "firestore.indexes.json"
+    },
+    "hosting": {
+        "public": ".",
+        "ignore": [
+            "firebase.json",
+            "firestore.rules",
+            "firestore.indexes.json",
+            ".firebaserc",
+            "**/.*",
+            "**/node_modules/**"
+        ]
+    }
+}

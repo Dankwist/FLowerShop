@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FlowerShop</title>
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="shortcut icon" href="./icons/favicon-logo.png" type="image/x-icon">
+        <script type="importmap">
+{
+    "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+    }
+}
+</script>
+</head>
+<body>
+        <nav>
+                <div class="left-nav">
+                        <h2><span class="orange-logo">Flower</span>Shop</h2>
+                </div>
+                        <div class="center-nav">
+                                <a href="./index.html">Home</a>
+                                <a href="./shop.html">Shop</a>
+                                <a href="./blog.html">Blog</a>
+                                <a href="./about.html">About</a>
+                                <a href="./ai-florist.html">AI Florist</a>
+                                <a href="./admin.html" id="admin-link" style="display: none;">
+        Admin
+    </a>
+                        </div>
+                                <div class="right-nav">
+                                        <a href="./login.html" id="profile-link">
+                                                <img src="./icons/profile-icon.png" alt="profile">
+                                        </a>
+                                        <a href="./cart.html"><img src="./icons/cart-icon.png" alt="cart"></a>
+                                       
+                                </div>
+        </nav>
+                <main>
+                                                <section class="hero" id="time-hero">
+
+                        <video
+                                class="hero-video"
+                                id="time-video"
+                                autoplay
+                                muted
+                                playsinline
+                                loop
+                                preload="auto"
+                        >
+                                <source src="./video/flower.mp4" type="video/mp4">
+                        </video>
+                        <div class="hero-overlay"></div>
+                        <div class="hero-content">
+
+                                <div class="hero-time">
+                                <span id="time-state">DAY</span>
+                                <span class="time-dot">вЂў</span>
+                                <span id="current-time">13:42</span>
+                                </div>
+
+                                <h1 id="hero-title">
+                                Flowers,<br>
+                                what the world needs
+                                </h1>
+
+                                <p id="hero-description">
+                                Find the flower that fits your moment.
+                                </p>
+
+                                <button id="browse-button">
+                                Browse flowers
+                                </button>
+                        </div>
+                        </section>
+
+
+                                <section class="best-selers">
+
+                        <div class="best-selers-title">
+                                <hr>
+                                <p>Best selers</p>
+                                <hr>
+                        </div>
+
+                        <div class="selers-card-main" id="flowers-container">
+                        </div>
+
+                        <div class="pagination">
+                                <button id="prev-page">в†ђ</button>
+                                <span id="page-number">1</span>
+                                <button id="next-page">в†’</button>
+                        </div>
+
+                        </section>
+                                                                        
+                                <div class="flower-3d">
+    <div class="flower-info">
+        <span class="flower-index" id="flower-index">01 / SPECIMEN</span>
+        <span class="flower-type" id="flower-type">HELIANTHUS ANNUUS</span>
+        <h2 id="flower-name">Sunflower</h2>
+        <p id="flower-description">A flower that follows the light.</p>
+    </div>
+
+    <div class="flower-3d-view" id="flower-3d">
+        <div class="flower-hotspot hotspot-petals" data-title="PETALS" data-text="Bright outer petals surrounding the flower head."></div>
+        <div class="flower-hotspot hotspot-seeds" data-title="SEEDS" data-text="The central structure contains hundreds of developing seeds."></div>
+        <div class="flower-hotspot hotspot-stem" data-title="STEM" data-text="The stem supports the flower and follows the light."></div>
+
+        <div class="flower-tooltip">
+            <span></span>
+            <p></p>
+        </div>
+    </div>
+
+    <div class="flower-controls">
+        <span class="flower-controls-title">FLOWER / <b id="flower-number">001</b></span>
+
+        <div class="flower-switcher">
+            <button id="flower-prev" type="button">в†ђ</button>
+            <span id="flower-current">01</span>
+            <button id="flower-next" type="button">в†’</button>
+        </div>
+
+        <div class="flower-views">
+            <button data-view="front" class="active">FRONT</button>
+            <button data-view="side">SIDE</button>
+            <button data-view="detail">DETAIL</button>
+        </div>
+    </div>
+
+    <div class="flower-stats">
+        <span>SPECIES <b id="flower-species">HELIANTHUS</b></span>
+        <span>FAMILY <b id="flower-family">ASTERACEAE</b></span>
+        <span>STATUS <b id="flower-status">IN BLOOM</b></span>
+    </div>
+
+    <div class="flower-hint">DRAG TO EXPLORE в†—</div>
+</div>
+
+                                        <section class="latest-photo">
+                                                <div class="best-selers-title">
+                                                        <hr>
+                                                        <p>Latest photo</p>
+                                                        <hr>
+                                                 </div>
+
+                                                <div class="latest-card-main">
+                                                        <div class="latest-card">
+                                                                <div class="latest-card-up">
+                                                                        <img src="./img-flower/woman1.png" alt="woman">
+                                                                        <p>Emily</p>
+                                                                        <p><span class="latest-card-up-date">2022/22/8</span></p>
+                                                                </div>
+
+                                                                  <img src="./img-flower/posts-back1.png" alt="home">
+
+                                                                <h3>Best flowers for inside home</h3>
+                                                                <p>All the flowers are best for your lovly house <br>just get the one you love the most рџЉ</p>
+
+                                                                <div class="latest-card-down">
+                                                                        <div class="latest-card-down-left">
+                                                                                <img src="./icons/like-icon.png" alt="likes">
+                                                                                <p>20</p>
+                                                                                <img src="./icons/viev-icon.png" alt="vieves">
+                                                                                <p>2001</p>
+                                                                        </div>
+                                                                                <div class="latest-card-down-right">
+                                                                        <a href="./blog-post.html?id=1">Read more</a>
+                                                                                 </div>
+                                                                </div>
+                                                        </div>
+                                                                 <div class="latest-card">
+                                                                <div class="latest-card-up">
+                                                                        <img src="./img-flower/woman1.png" alt="woman">
+                                                                        <p>Emily</p>
+                                                                        <p><span class="latest-card-up-date">2022/22/8</span></p>
+                                                                </div>
+
+                                                                  <img src="./img-flower/posts-back2.png" alt="home">
+
+                                                                <h3>Best flowers for inside home</h3>
+                                                                <p>All the flowers are best for your lovly house <br>just get the one you love the most </p>
+
+                                                                <div class="latest-card-down">
+                                                                        <div class="latest-card-down-left">
+                                                                                <img src="./icons/like-icon.png" alt="likes">
+                                                                                <p>20</p>
+                                                                                <img src="./icons/viev-icon.png" alt="vieves">
+                                                                                <p>2001</p>
+                                                                        </div>
+                                                                                <div class="latest-card-down-right">
+                                                                        <a href="./blog-post.html?id=2">Read more</a>
+                                                                                 </div>
+                                                                </div>
+                                                        </div>
+
+                                                                 <div class="latest-card">
+                                                                <div class="latest-card-up">
+                                                                        <img src="./img-flower/woman1.png" alt="woman">
+                                                                        <p>Emily</p>
+                                                                        <p><span class="latest-card-up-date">2022/22/8</span></p>
+                                                                </div>
+
+                                                                  <img src="./img-flower/posts-back3.png" alt="home">
+
+                                                                <h3>Best flowers for inside home</h3>
+                                                                <p>All the flowers are best for your lovly house <br>just get the one you love the most рџЉ</p>
+
+                                                                <div class="latest-card-down">
+                                                                        <div class="latest-card-down-left">
+                                                                                <img src="./icons/like-icon.png" alt="likes">
+                                                                                <p>20</p>
+                                                                                <img src="./icons/viev-icon.png" alt="vieves">
+                                                                                <p>2001</p>
+                                                                        </div>
+                                                                               <div class="latest-card-down-right">
+                                                                        <a href="./blog-post.html?id=3">Read more</a>
+                                                                                 </div>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </section>
+
+
+                                                <section class="coments">
+                                                        <div class="best-selers-title">
+                                                                <hr>
+                                                                <p>Comments</p>
+                                                                <hr>
+                                                        </div>     
+
+                                                        <div class="comets-card-main">
+                                                                <div class="coments-card">
+                                                                        <div class="coments-up">
+                                                                                <img src="./img-flower/woman2.png" alt="girl">
+                                                                                <p>Atena</p>
+                                                                        </div>
+                                                                        <div class="coments-center">
+                                                                                <p>iвЂ™m buying flower from them every weak, always fresh flowers and beutifulрџЌрџЊ»... loveвЂ™em so nuch..keep going рџ’Їрџ’Ї</p>
+                                                                                <img src="./icons/star-orange-icon.png" alt="star">
+                                                                                <img src="./icons/star-orange-icon.png" alt="star">
+                                                                                <img src="./icons/star-orange-icon.png" alt="star">
+                                                                                <img src="./icons/star-orange-icon.png" alt="star">
+                                                                                <img src="./icons/star-gray-icon.png" alt="star">
+                                                                        </div>
+                                                                </div>
+
+                                                                 <div class="coments-card">
+                                                                        <div class="coments-up">
+                                                                                <img src="./img-flower/woman3.png" alt="girl">
+                                                                                <p>pop Boy</p>
+                                                                        </div>
+                                                                        <div class="coments-center">
+                                                                                <p>iвЂ™m buying flower from them every weak, always fresh flowers and beutifulрџЌрџЊ»... loveвЂ™em so nuch..keep going рџ’Їрџ’Ї</p>
+                                                                                <img src="./icons/star-orange-icon.png" alt="star">
+                                                                                <img src="./icons/star-orange-icon.png" alt="star">
+                                                                                <img src="./icons/star-orange-icon.png" alt="star">
+                                                                                <img src="./icons/star-orange-icon.png" alt="star">
+                                                                                <img src="./icons/star-orange-icon.png" alt="star">
+                                                                        </div>
+                                                                </div>
+
+                                                                 <div class="coments-card">
+                                                                        <div class="coments-up">
+                                                                                <img src="./img-flower/woman4.png" alt="girl">
+                                                                                <p>Young Girl</p>
+                                                                        </div>
+                                                                        <div class="coments-center">
+                                                                                <p>iвЂ™m buying flower from them every weak, always fresh flowers and beutifulрџЌрџЊ»... loveвЂ™em so nuch..keep going рџ’Їрџ’Ї</p>
+                                                                                <img src="./icons/star-orange-icon.png" alt="star">
+                                                                                <img src="./icons/star-orange-icon.png" alt="star">
+                                                                                <img src="./icons/star-orange-icon.png" alt="star">
+                                                                                <img src="./icons/star-gray-icon.png" alt="star">
+                                                                                <img src="./icons/star-gray-icon.png" alt="star">
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </section>
+                </main>
+
+        <footer>
+                <div class="footer-left">
+                     <h2><span class="orange-logo">Flower</span>Shop</h2>
+                     <p>Some random stuff about flower shop and some more info cuz this box had to get fill
+                        Some random stuff about flower shop and some more info cuz this box had to get fill
+                        Some random stuff about flower shop and some more info cuz this box had to get fill</p>   
+                 </div>
+                        <div class="footer-center">
+                                <p><span class="footer-links">Links</span></p>
+                                <ul>
+                                        <li>Home</li>
+                                        <li>Shop</li>
+                                        <li>About</li>
+                                        <li>Login</li>       
+                                </ul>
+                        </div>
+                          <div class="footer-center1">
+                                <p><span class="footer-links">Links</span></p>
+                                <ul>
+                                        <li>Home</li>
+                                        <li>Shop</li>
+                                        <li>About</li>
+                                        <li>Login</li>       
+                                </ul>
+                        </div>
+                        <div class="footer-right">
+                                <p><span class="footer-links">Contacts</span></p>
+                                <ul>
+                                        <li><img src="./icons/footer1-icon.png" alt="">26985 Brighton Lane, Lake Forest, CA</li>
+                                        <li><img src="./icons/footer2-icon.png" alt="">support@Flowers.com</li>
+                                        <li><img src="./icons/footer3-icon.png" alt="">+1 236 5489</li>
+                                </ul>
+                        </div>
+        </footer>
+ <script type="module" src="./js/time-hero.js"></script>
+<script type="module" src="./js/catalog.js"></script>
+<script type="module" src="./js/user-nav.js"></script>
+<script type="module" src="./js/flower-3d.js"></script>
+</body>
+</html>

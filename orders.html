@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders - FlowerShop</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./icons/favicon-logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/orders.css">
+</head>
+<body>
+    <nav>
+        <div class="left-nav">
+            <h2><span class="orange-logo">Flower</span>Shop</h2>
+        </div>
+
+        <div class="center-nav">
+            <a href="./index.html">Home</a>
+            <a href="./shop.html">Shop</a>
+            <a href="./orders.html">Orders</a>
+             <a href="./ai-florist.html">AI Florist</a>
+             <a href="./admin.html" id="admin-link" style="display: none;"> Admin </a>
+        </div>
+
+        <div class="right-nav">
+            <a href="./profile.html" id="profile-link"></a>
+            <a href="./cart.html">
+                <img src="./icons/cart-icon.png" alt="cart">
+            </a>
+        </div>
+    </nav>
+
+    <main class="orders-page">
+        <div class="orders-heading">
+            <p>ACCOUNT</p>
+            <h1>My orders</h1>
+        </div>
+
+        <div id="orders-container"></div>
+    </main>
+
+    <script type="module" src="./js/orders.js"></script>
+    <script type="module" src="./js/user-nav.js"></script>
+</body>
+</html>

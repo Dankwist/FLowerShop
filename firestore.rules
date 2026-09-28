@@ -1,0 +1,101 @@
+rules_version = '2';
+service cloud.firestore {
+    match /databases/{database}/documents {
+        function isLoggedIn() {
+            return request.auth != null;
+        }
+
+        function isAdmin() {
+            return isLoggedIn()
+                && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "admin";
+        }
+
+        match /flowers/{flowerId} {
+            allow read: if true;
+            allow create, update, delete: if isAdmin();
+        }
+
+        match /users/{userId} {
+            allow read: if isLoggedIn()
+                && (request.auth.uid == userId || isAdmin());
+
+            allow create: if isLoggedIn()
+                && request.auth.uid == userId
+                && request.resource.data.role == "user";
+
+            allow update: if isAdmin()
+                || (
+                    isLoggedIn()
+                    && request.auth.uid == userId
+                    && request.resource.data.role == resource.data.role
+                );
+
+            allow delete: if isAdmin();
+        }
+
+        match /cart/{cartId} {
+            allow read, delete: if isLoggedIn()
+                && resource.data.userId == request.auth.uid;
+
+            allow create: if isLoggedIn()
+                && request.resource.data.userId == request.auth.uid;
+
+            allow update: if isLoggedIn()
+                && resource.data.userId == request.auth.uid
+                && request.resource.data.userId == request.auth.uid;
+        }
+
+        match /orders/{orderId} {
+            allow read: if isLoggedIn()
+                && (resource.data.userId == request.auth.uid || isAdmin());
+
+            allow create: if isLoggedIn()
+                && request.resource.data.userId == request.auth.uid
+                && request.resource.data.status in ["pending", "paid"];
+
+            allow update, delete: if isAdmin();
+        }
+
+        match /activeActions/{actionId} {
+            allow read: if isLoggedIn()
+                && (resource.data.userId == request.auth.uid || isAdmin());
+
+            allow create: if isLoggedIn()
+                && request.resource.data.userId == request.auth.uid
+                && request.resource.data.status == "pending";
+
+            allow update, delete: if isAdmin();
+        }
+
+        match /reviews/{reviewId} {
+            allow read: if true;
+
+            allow create: if isLoggedIn()
+                && request.resource.data.userId == request.auth.uid
+                && request.resource.data.rating >= 1
+                && request.resource.data.rating <= 5;
+
+            allow update: if isLoggedIn()
+                && resource.data.userId == request.auth.uid
+                && request.resource.data.userId == resource.data.userId;
+
+            allow delete: if isLoggedIn()
+                && (resource.data.userId == request.auth.uid || isAdmin());
+        }
+
+        match /cards/{cardId} {
+            allow read: if isLoggedIn()
+                && resource.data.userId == request.auth.uid;
+
+            allow create: if isLoggedIn()
+                && request.resource.data.userId == request.auth.uid;
+
+            allow update: if isLoggedIn()
+                && resource.data.userId == request.auth.uid
+                && request.resource.data.userId == request.auth.uid;
+
+            allow delete: if isLoggedIn()
+                && resource.data.userId == request.auth.uid;
+        }
+    }
+}
