@@ -48,12 +48,12 @@ const intro = document.querySelector(".ai-intro");
 const quiz = document.querySelector("#ai-quiz");
 const result = document.querySelector("#ai-result");
 const startButton = document.querySelector("#start-florist");
-const nextButton = document.querySelector("#next-question");
 const restartButton = document.querySelector("#restart-florist");
 const viewFlowerButton = document.querySelector("#view-flower");
 const questionTitle = document.querySelector("#question-title");
 const questionDescription = document.querySelector("#question-description");
 const questionNumber = document.querySelector("#question-number");
+const questionLabel = document.querySelector(".ai-question-label");
 const optionsContainer = document.querySelector("#options");
 const quizStatus = document.querySelector("#quiz-status");
 const resultName = document.querySelector("#result-name");
@@ -61,10 +61,15 @@ const resultDescription = document.querySelector("#result-description");
 const resultReason = document.querySelector("#result-reason");
 const resultImage = document.querySelector("#result-image");
 const resultPrice = document.querySelector("#result-price");
+const previousFlowerButton = document.querySelector("#previous-flower");
+const nextFlowerButton = document.querySelector("#next-flower");
+const resultCounter = document.querySelector("#result-counter");
+
 let currentQuestion = 0;
-let selectedOption = null;
 let answers = [];
 let flowers = [];
+let recommendations = [];
+let currentFlowerIndex = 0;
 let recommendedFlower = null;
 
 async function loadFlowers() {
@@ -88,17 +93,15 @@ function showQuestion() {
     questionTitle.textContent = question.title;
     questionDescription.textContent = question.description;
     questionNumber.textContent = `${String(currentQuestion + 1).padStart(2, "0")} / 04`;
+    questionLabel.textContent = String(currentQuestion + 1).padStart(2, "0");
 
     optionsContainer.innerHTML = "";
-    selectedOption = null;
-    nextButton.disabled = true;
     quizStatus.textContent = "CHOOSE ONE OPTION";
 
     question.options.forEach(option => {
         const button = document.createElement("button");
 
         button.className = "ai-option";
-
         button.innerHTML = `
             <span>${option[0]}</span>
             <strong>${option[1]}</strong>
@@ -106,13 +109,14 @@ function showQuestion() {
 
         button.addEventListener("click", () => {
             document.querySelectorAll(".ai-option").forEach(item => {
-                item.classList.remove("selected");
+                item.disabled = true;
             });
 
             button.classList.add("selected");
-            selectedOption = option[1];
-            nextButton.disabled = false;
-            quizStatus.textContent = "READY TO CONTINUE";
+            answers[currentQuestion] = option[1];
+            quizStatus.textContent = "PROCESSING";
+
+            setTimeout(nextQuestion, 300);
         });
 
         optionsContainer.appendChild(button);
@@ -129,78 +133,138 @@ function getBudget() {
     return [50, Infinity];
 }
 
-function findFlower() {
-    if (!flowers.length) {
-        return null;
-    }
+function getFlowerScore(flower) {
+    const text = `
+        ${flower.name || ""}
+        ${flower.description || ""}
+        ${flower.type || ""}
+        ${flower.color || ""}
+    `.toLowerCase();
 
-    const [min, max] = getBudget();
+    let score = 0;
 
-    let matches = flowers.filter(flower => {
-        const price = Number(flower.price);
-
-        return price >= min && price <= max;
-    });
-
-    if (!matches.length) {
-        matches = flowers;
-    }
-
-    const mood = answers[2];
-
-    const keywords = {
-        Romantic: ["rose", "red", "romantic"],
-        Calm: ["white", "lavender", "lily"],
-        Happy: ["sunflower", "yellow", "tulip"],
-        Dark: ["black", "dark", "purple"]
+    const moodKeywords = {
+        Romantic: ["rose", "red", "romantic", "love"],
+        Calm: ["white", "lavender", "lily", "soft", "calm"],
+        Happy: ["sunflower", "yellow", "tulip", "bright", "happy"],
+        Dark: ["black", "dark", "purple", "deep"]
     };
 
-    const searchWords = keywords[mood] || [];
+    const occasionKeywords = {
+        Birthday: ["sunflower", "tulip", "bright", "happy"],
+        Date: ["rose", "romantic", "red"],
+        Apology: ["lily", "white", "rose"],
+        "Just because": ["tulip", "sunflower", "lily"]
+    };
 
-    const preferred = matches.filter(flower => {
-        const text = `
-            ${flower.name}
-            ${flower.description || ""}
-        `.toLowerCase();
+    const recipientKeywords = {
+        Myself: ["unique", "rare", "exotic"],
+        Partner: ["rose", "romantic", "love"],
+        Friend: ["tulip", "sunflower", "bright"],
+        Family: ["lily", "sunflower", "classic"]
+    };
 
-        return searchWords.some(word => text.includes(word));
+    const moodWords = moodKeywords[answers[2]] || [];
+    const occasionWords = occasionKeywords[answers[1]] || [];
+    const recipientWords = recipientKeywords[answers[0]] || [];
+
+    moodWords.forEach(word => {
+        if (text.includes(word)) {
+            score += 5;
+        }
     });
 
-    if (preferred.length) {
-        return preferred[Math.floor(Math.random() * preferred.length)];
+    occasionWords.forEach(word => {
+        if (text.includes(word)) {
+            score += 3;
+        }
+    });
+
+    recipientWords.forEach(word => {
+        if (text.includes(word)) {
+            score += 2;
+        }
+    });
+
+    const [min, max] = getBudget();
+    const price = Number(flower.price);
+
+    if (price >= min && price <= max) {
+        score += 10;
+    } else {
+        score -= 8;
     }
 
-    return matches[Math.floor(Math.random() * matches.length)];
+    return score;
 }
 
-function showResult() {
-    const flower = findFlower();
+function createRecommendations() {
+    if (!flowers.length) {
+        recommendations = [];
+        return;
+    }
 
-    recommendedFlower = flower;
+    const scoredFlowers = flowers.map(flower => ({
+        flower,
+        score: getFlowerScore(flower)
+    }));
 
-    if (!flower) {
+    scoredFlowers.sort((a, b) => b.score - a.score);
+
+    recommendations = scoredFlowers
+        .slice(0, 4)
+        .map(item => item.flower);
+
+    currentFlowerIndex = 0;
+}
+
+function showRecommendedFlower() {
+    if (!recommendations.length) {
         resultName.textContent = "No flowers found";
         resultDescription.textContent = "The catalog is currently empty.";
         resultReason.textContent = "Add flowers to Firestore to receive recommendations.";
         resultPrice.textContent = "$0";
+        resultCounter.textContent = "00 / 00";
 
         return;
     }
 
+    const flower = recommendations[currentFlowerIndex];
+
+    recommendedFlower = flower;
+
     resultName.textContent = flower.name;
-
-    resultDescription.textContent =
-        flower.description || "A flower selected for your moment.";
-
+    resultDescription.textContent = flower.description || "A flower selected for your moment.";
     resultPrice.textContent = `$${flower.price}`;
-
-    resultImage.src =
-        flower.image || "../img-flower/flower1.png";
-
+    resultImage.src = flower.image || "../img-flower/flower1.png";
     resultImage.alt = flower.name;
+
+    resultCounter.textContent =
+        `${String(currentFlowerIndex + 1).padStart(2, "0")} / ${String(recommendations.length).padStart(2, "0")}`;
 
     resultReason.textContent =
         `${answers[0]} · ${answers[1]} · ${answers[2]} · ${answers[3]}`;
+
+    previousFlowerButton.disabled = currentFlowerIndex === 0;
+    nextFlowerButton.disabled = currentFlowerIndex === recommendations.length - 1;
+}
+
+function nextFlower() {
+    if (currentFlowerIndex >= recommendations.length - 1) {
+        return;
+    }
+
+    currentFlowerIndex++;
+    showRecommendedFlower();
+}
+
+function previousFlower() {
+    if (currentFlowerIndex <= 0) {
+        return;
+    }
+
+    currentFlowerIndex--;
+    showRecommendedFlower();
 }
 
 function startQuiz() {
@@ -210,6 +274,8 @@ function startQuiz() {
 
     currentQuestion = 0;
     answers = [];
+    recommendations = [];
+    currentFlowerIndex = 0;
     recommendedFlower = null;
 
     showQuestion();
@@ -221,12 +287,6 @@ function startQuiz() {
 }
 
 function nextQuestion() {
-    if (!selectedOption) {
-        return;
-    }
-
-    answers[currentQuestion] = selectedOption;
-
     if (currentQuestion < questions.length - 1) {
         currentQuestion++;
         showQuestion();
@@ -237,7 +297,8 @@ function nextQuestion() {
     quiz.style.display = "none";
     result.style.display = "flex";
 
-    showResult();
+    createRecommendations();
+    showRecommendedFlower();
 
     window.scrollTo({
         top: 0,
@@ -248,7 +309,8 @@ function nextQuestion() {
 function restartQuiz() {
     answers = [];
     currentQuestion = 0;
-    selectedOption = null;
+    recommendations = [];
+    currentFlowerIndex = 0;
     recommendedFlower = null;
 
     result.style.display = "none";
@@ -265,14 +327,14 @@ function viewFlower() {
         return;
     }
 
-    window.location.href =
-        `./shop.html?flower=${recommendedFlower.id}`;
+    window.location.href = `./shop.html?flower=${recommendedFlower.id}`;
 }
 
 startButton.addEventListener("click", startQuiz);
-nextButton.addEventListener("click", nextQuestion);
 restartButton.addEventListener("click", restartQuiz);
 viewFlowerButton.addEventListener("click", viewFlower);
+previousFlowerButton.addEventListener("click", previousFlower);
+nextFlowerButton.addEventListener("click", nextFlower);
 
 quiz.style.display = "none";
 result.style.display = "none";

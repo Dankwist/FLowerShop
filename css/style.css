@@ -176,7 +176,6 @@ nav {
     z-index: 3;
     overflow: hidden;
     background-color: rgba(242, 242, 242, 1);
-    
 }
 
 .flower-3d-view {
@@ -241,38 +240,72 @@ nav {
     position: absolute;
     right: 70px;
     top: 70px;
-    width: 190px;
+    width: 210px;
     z-index: 5;
 }
 
 .flower-controls-title {
     margin-bottom: 18px;
     color: #555;
-     font-size: 17px;
-     margin-right: 40px
+    font-size: 17px;
 }
 
-.flower-controls button {
+.flower-switcher {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-top: 1px solid #d2d2d2;
+    border-bottom: 1px solid #d2d2d2;
+}
+
+.flower-switcher button {
+    width: 55px;
+    height: 55px;
+    border: none;
+    background: transparent;
+    color: #888;
+    font-size: 22px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.flower-switcher button:hover {
+    color: #111;
+    background: #e8e8e8;
+}
+
+.flower-switcher span {
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #555;
+}
+
+.flower-views {
+    margin-top: 15px;
+}
+
+.flower-views button {
     display: block;
     width: 100%;
     border: none;
     border-bottom: 1px solid #d2d2d2;
     background: transparent;
-    padding: 20px 0;
+    padding: 14px 0;
     text-align: left;
-    font-size: 16px;
+    font-size: 13px;
     letter-spacing: 2px;
     color: #888;
     cursor: pointer;
     transition: .2s;
 }
 
-.flower-controls button:first-of-type {
+.flower-views button:first-child {
     border-top: 1px solid #d2d2d2;
 }
 
-.flower-controls button:hover,
-.flower-controls button.active {
+.flower-views button:hover,
+.flower-views button.active {
     padding-left: 10px;
     color: #111;
 }
@@ -327,6 +360,7 @@ nav {
     height: 1px;
     background: #888;
 }
+
 .hotspot-seeds::after {
     left: 1px;
     right: 20px;
@@ -390,18 +424,70 @@ nav {
 @media (max-width: 900px) {
     .flower-info {
         left: 30px;
+        top: 40px;
     }
 
     .flower-controls {
         right: 30px;
+        top: 40px;
     }
 
     .flower-stats {
         left: 30px;
+        bottom: 40px;
     }
 
     .flower-hint {
         right: 30px;
+        bottom: 40px;
+    }
+
+    .flower-3d-view {
+        width: 430px;
+        height: 500px;
+    }
+}
+
+@media (max-width: 600px) {
+    .flower-3d {
+        height: 750px;
+    }
+
+    .flower-info {
+        left: 20px;
+        top: 30px;
+        width: 220px;
+    }
+
+    .flower-info h2 {
+        font-size: 38px;
+    }
+
+    .flower-type {
+        margin-top: 35px;
+    }
+
+    .flower-controls {
+        right: 20px;
+        top: 30px;
+        width: 150px;
+    }
+
+    .flower-3d-view {
+        width: 100%;
+        height: 450px;
+        top: 52%;
+    }
+
+    .flower-stats {
+        left: 20px;
+        bottom: 35px;
+        font-size: 12px;
+    }
+
+    .flower-hint {
+        right: 20px;
+        bottom: 35px;
     }
 }
 
@@ -782,6 +868,20 @@ footer {
   flex-shrink: 0;
 }
 
+.footer-center a,
+.footer-center1 a,
+.footer-right a {
+  color: rgba(217, 217, 217, 1);
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.footer-center a:hover,
+.footer-center1 a:hover,
+.footer-right a:hover {
+  color: orange;
+}
+
 /* adaptive */
 
 @media (max-width: 900px) {
@@ -843,4 +943,31 @@ footer {
     grid-template-columns: 1fr;
     gap: 20px;
   }
+}
+
+
+
+.latest-card-down-right a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: orange;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.latest-card-down-right a::after {
+  content: "→";
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+.latest-card-down-right a:hover {
+  color: #222;
+}
+
+.latest-card-down-right a:hover::after {
+  transform: translateX(4px);
 }

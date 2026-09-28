@@ -75,43 +75,56 @@
 
             <div class="ai-quiz-footer">
                 <span id="quiz-status">CHOOSE ONE OPTION</span>
-                <button id="next-question" disabled>NEXT →</button>
-            </div>
+                <span>SELECT TO CONTINUE</span>
+                </div>
         </section>
 
         <section class="ai-result" id="ai-result">
-            <div class="ai-result-header">
-                <span>YOUR MATCH</span>
-                <span>04 / 04</span>
+    <div class="ai-result-header">
+        <span>YOUR MATCHES</span>
+        <span id="result-counter">01 / 04</span>
+    </div>
+
+    <div class="ai-result-content">
+        <div class="ai-result-copy">
+            <span>✦ RECOMMENDED FLOWER</span>
+
+            <h2 id="result-name">Your flower</h2>
+
+            <p id="result-description">
+                Your personal recommendation will appear here.
+            </p>
+
+            <div class="ai-result-meta">
+                <span>WHY THIS ONE</span>
+                <p id="result-reason">Based on your answers.</p>
             </div>
 
-            <div class="ai-result-content">
-                <div class="ai-result-copy">
-                    <span>✦ RECOMMENDED FLOWER</span>
-                    <h2 id="result-name">Your flower</h2>
-                    <p id="result-description">
-                        Your personal recommendation will appear here.
-                    </p>
-
-                    <div class="ai-result-meta">
-                        <span>WHY THIS ONE</span>
-                        <p id="result-reason">
-                            Based on your answers.
-                        </p>
-                    </div>
-
-                    <div class="ai-result-actions">
-                        <button id="view-flower">VIEW FLOWER</button>
-                        <button id="restart-florist">START AGAIN</button>
-                    </div>
-                </div>
-
-                <div class="ai-result-image">
-                        <img id="result-image" src="../img-flower/flower1.png" alt="Recommended flower">
-                        <div class="ai-result-price" id="result-price">$0</div>
-                </div>
+            <div class="ai-result-actions">
+                <button id="view-flower">VIEW FLOWER</button>
+                <button id="restart-florist">START AGAIN</button>
             </div>
-        </section>
+        </div>
+
+        <div class="ai-result-image">
+            <button class="flower-arrow flower-arrow-left" id="previous-flower">
+                ←
+            </button>
+
+            <img
+                id="result-image"
+                src="../img-flower/flower1.png"
+                alt="Recommended flower"
+            >
+
+            <button class="flower-arrow flower-arrow-right" id="next-flower">
+                →
+            </button>
+
+            <div class="ai-result-price" id="result-price">$0</div>
+        </div>
+    </div>
+</section>
     </main>
 
     <script type="module" src="../js/ai-florist.js"></script>
